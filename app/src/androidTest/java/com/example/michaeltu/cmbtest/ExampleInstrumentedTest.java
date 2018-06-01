@@ -114,9 +114,22 @@ public class ExampleInstrumentedTest {
 
             }
 
+            Log.i("test99", "您本月没有收入和支出喔 "+(mDevice.findObject(new UiSelector().textContains("您本月没有收入和支出喔")).exists()));
+            if(mDevice.findObject(new UiSelector().textContains("您本月没有收入和支出喔")).exists()){
+                (mDevice.findObject(new UiSelector().textContains("2018-"))).click();
+
+                sleep(500);
+
+                mDevice.findObject(new UiSelector().className(android.widget.FrameLayout.class))
+                        .getChild(new UiSelector().index(0))
+                        .getChild(new UiSelector().index(1))
+                        .click();
+
+            }
+
             mDevice.wait(Until.findObject(By.clazz(WebView.class)), timeOut);
 
-            new UiObject(new UiSelector().textContains("支付宝")).click();
+            mDevice.findObject(new UiSelector().textContains("支付宝")).click();
 
             sleep(3000);
 
